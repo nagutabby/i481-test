@@ -1,6 +1,6 @@
 import pytest # type: ignore[import-not-found]
 
-from ..src.acquire121 import *
+from src.acquire121 import *
 
 class TestAcquire():
     @pytest.fixture()
@@ -35,7 +35,6 @@ class TestAcquire():
             f"Expected return value {expected_return}, but got {result}"
         assert svkc.val == expected_svkc, \
             f"Expected svkc.val to be {expected_svkc}, but got {svkc.val}"
-
 
     @pytest.mark.parametrize("cur, svk, wvk, initial_avkc, expected_avkc, expected_return", [
         # Case 1: Invalid bounds (sv_ub < sv_lb)

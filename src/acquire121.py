@@ -1,7 +1,6 @@
-from ..utils.Buffer import *
+from utils.Buffer import *
 
 class Acquire():
-
     def m11e(self, cur: int, dvk: int, svk: int, svkc: C):
         if dvk == 0:
             return -1
@@ -19,7 +18,6 @@ class Acquire():
             avkc.val = av_ub
         return 0
 
-    # temporally
     def m11(self, t: int, dv: tuple[int, int], sv: list[int], svc: list[int]):
         svkc = C(0)
         for k,dvk in enumerate(dv):
@@ -34,7 +32,6 @@ class Acquire():
             self.m12e(t, sv[k], wv[k], avkc)
             avc[k] = avkc.val
 
-    # must be defined out of the functions
     svc = [0, 0, 0, 0]
     avc = [0, 0, 0, 0]
 
