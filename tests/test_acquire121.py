@@ -47,38 +47,31 @@ class TestAcquire():
         (1, 201, (100, 200, -100, 100), 0, 100, 0),
     ])
     def test_m12e(self, cur, svk, wvk, initial_avkc, expected_avkc, expected_return):
-        # Setup
         avkc = C(initial_avkc)
 
-        # Exercise
         result = self.acq.m12e(cur, svk, wvk, avkc)
 
-        # Verify
         assert result == expected_return, \
             f"Expected return value {expected_return}, but got {result}"
         assert avkc.val == expected_avkc, \
             f"Expected avkc.val to be {expected_avkc}, but got {avkc.val}"
 
     def test_m11_m11e_error(self):
-        # Setup test data with dvk=0
         t = 2
-        dv = (0, 4)  # First element is 0
+        dv = (0, 4)
         sv = [100, 200]
         svc = [0, 0]
 
-        # Execute m11 which internally calls m11e
         self.acq.m11(t, dv, sv, svc)
 
         assert svc == [0, 0]
 
     def test_m11_m11e_normal(self):
-        # Setup test data
         t = 2
-        dv = (2, 4)  # 2つの要素でテスト
-        sv = [100, 200]  # 対応するsvの値
-        svc = [0, 0]  # 初期のsvc値
+        dv = (2, 4)
+        sv = [100, 200]
+        svc = [0, 0]
 
-        # Execute m11 which internally calls m11e
         self.acq.m11(t, dv, sv, svc)
 
         assert svc == [100, 0]
@@ -94,14 +87,11 @@ class TestAcquire():
         ]
         avc = [0, 0, 0, 0]
 
-        # Execute m12 which internally calls m12e
         self.acq.m12(t, wv, sv, avc)
 
-        # Verify results - avc should remain unchanged for invalid bounds
         assert avc == [0, 0, 0, 0], "avc values should remain unchanged for invalid bounds"
 
     def test_m12_m12e_normal(self):
-        # Setup test data
         t = 1
         sv = [40, 260, 300, 460]  # 範囲外、範囲外、範囲内、範囲外の値を設定
         wv = [
@@ -112,10 +102,8 @@ class TestAcquire():
         ]
         avc = [0, 0, 0, 0]
 
-        # Execute m12 which internally calls m12e
         self.acq.m12(t, wv, sv, avc)
 
-        # Verify results
         expected_avc = [10, -20, 0, -40]
         assert avc == expected_avc, f"Expected {expected_avc}, but got {avc}"
 
