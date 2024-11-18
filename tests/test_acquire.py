@@ -1,6 +1,6 @@
 import pytest # type: ignore[import-not-found]
 
-from src.acquire121 import *
+from src.acquire import *
 
 class TestAcquire():
     @pytest.fixture()
